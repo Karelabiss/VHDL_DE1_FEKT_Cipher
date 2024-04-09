@@ -1,62 +1,90 @@
-library IEEE;
-use IEEE.std_logic_1164.all;
+-- Testbench automatically generated online
+-- at https://vhdl.lapinoo.net
+-- Generation date : 9.4.2024 19:10:45 UTC
 
-entity random_generator_tb is
-end random_generator_tb;
+library ieee;
+use ieee.std_logic_1164.all;
 
-architecture testbench of random_generator_tb is
-    -- Signály pro testbench
-    signal clk_tb : std_logic := '0';
-    signal reset_tb : std_logic := '0';
-    signal txt_tb : std_logic_vector(7 downto 0) := (others => '0'); -- Vstupní data
-    signal data_out_tb : std_logic_vector(7 downto 0);
-    signal code_txt_tb : std_logic_vector(7 downto 0);
-    signal decode_txt_tb : std_logic_vector(7 downto 0);
-    signal array_of_key_debug_tb : STD_LOGIC_VECTOR(7 downto 0);
+entity tb_random_generator is
+end tb_random_generator;
+
+architecture tb of tb_random_generator is
+
+    component random_generator
+    port (clk                : in std_logic;
+        reset              : in std_logic;
+        txt                : in std_logic_vector (7 downto 0);
+        data_out           : out std_logic_vector (7 downto 0);
+        code_txt           : out std_logic_vector (7 downto 0);
+        decode_txt         : out std_logic_vector (7 downto 0);
+        array_of_key_debug : out std_logic_vector (7 downto 0));
+end component;
+
+signal clk                : std_logic;
+signal reset              : std_logic;
+signal txt                : std_logic_vector (7 downto 0);
+signal data_out           : std_logic_vector (7 downto 0);
+signal code_txt           : std_logic_vector (7 downto 0);
+signal decode_txt         : std_logic_vector (7 downto 0);
+signal array_of_key_debug : std_logic_vector (7 downto 0);
+
+constant TbPeriod : time := 100 ns; -- EDIT Put right period here
+signal TbClock : std_logic := '0';
+signal TbSimEnded : std_logic := '0';
+
 begin
-    -- Připojení testovaného modulu
-    DUT: entity work.random_generator
-    port map (
-        clk => clk_tb,
-        reset => reset_tb,
-        txt => txt_tb,
-        data_out => data_out_tb,
-        code_txt => code_txt_tb,
-        decode_txt => decode_txt_tb,
-        array_of_key_debug => array_of_key_debug_tb
-    );
 
-    -- Proces pro generování hodinového signálu
-    clk_process: process
+    dut : random_generator
+    port map (clk                => clk,
+        reset              => reset,
+        txt                => txt,
+        data_out           => data_out,
+        code_txt           => code_txt,
+        decode_txt         => decode_txt,
+        array_of_key_debug => array_of_key_debug);
+
+    -- Clock generation
+    TbClock <= not TbClock after TbPeriod/2 when TbSimEnded /= '1' else '0';
+
+    -- EDIT: Check that clk is really your main clock signal
+    clk <= TbClock;
+
+    
+    
+    
+    stimuli : process
     begin
-        while now < 1000 ns loop
-            clk_tb <= '0';
-            wait for 5 ns;
-            clk_tb <= '1';
-            wait for 5 ns;
-        end loop;
+        
+        -- Reset generation
+        -- EDIT: Check that reset is really your reset signal
+        reset <= '1';
+        wait for 10 ns;
+        reset <= '0';
+        wait for 10 ns;
+        
+        
+        -- EDIT Adapt initialization as needed
+        txt <= "01000001";
+        wait for 100 ns;
+        txt <= "01001000";
+        wait for 100 ns;
+        txt <= "01001111";
+        wait for 100 ns;
+        txt <= "01001010";
+
+        -- EDIT Add stimuli here
+        wait for 100 * TbPeriod;
+
+        -- Stop the clock and hence terminate the simulation
+        TbSimEnded <= '1';
         wait;
     end process;
 
-    -- Proces pro reset
-    reset_process: process
-    begin
-        reset_tb <= '1';
-        wait for 10 ns;
-        reset_tb <= '0';
-        wait;
-    end process;
+end tb;
 
-    -- Proces pro stimulaci vstupních dat
-    stimulus_process: process
-    begin
-        wait for 15 ns;
-        txt_tb <= "01000001";
-        wait for 10 ns;
-        txt_tb <= "01001000";
-        wait for 10 ns;
-        txt_tb <= "01001111";
-        wait for 10 ns;
-        txt_tb <= "01001010";
-    end process;
-end testbench;
+-- Configuration block below is required by some simulators. Usually no need to edit.
+
+configuration cfg_tb_random_generator of tb_random_generator is
+    for tb
+end for;
+end cfg_tb_random_generator;
