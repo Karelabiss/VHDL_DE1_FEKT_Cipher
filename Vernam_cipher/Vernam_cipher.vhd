@@ -56,10 +56,10 @@ begin
             
             code_txt <= txt XOR array_of_key(index * 8 + 7 downto index * 8);
             
-            if index < 299 then -- Počet osmi bitových bloků v 2400bitovém registru
+            if index < 299 then
                 index <= index + 1;
             else
-                index <= 0; -- Po dosažení konce registru resetujeme index
+                index <= 0; 
             end if;
         end if;
     end process;
