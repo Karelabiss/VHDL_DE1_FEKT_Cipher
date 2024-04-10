@@ -6,7 +6,6 @@ entity random_generator is
         clk :        in STD_LOGIC;
         reset :      in STD_LOGIC := '0'; -- Reset nula
         txt :        in STD_LOGIC_VECTOR(7 downto 0);
-        data_out :   out STD_LOGIC_VECTOR(7 downto 0);
         code_txt :   out STD_LOGIC_VECTOR(7 downto 0);
         decode_txt : out STD_LOGIC_VECTOR(7 downto 0);
         array_of_key_debug : out STD_LOGIC_VECTOR(7 downto 0)
@@ -38,16 +37,8 @@ begin
         end if;
     end process random_number;
     
-    --data_out <= key;
-    --code_txt <= txt XOR key;
-    
-    
     array_of_key(index * 8 + 7 downto index * 8) <= key;
     
-    
-    
-    --code_txt_x <= txt XOR key;
-    --decode_txt <= key XOR code_txt_x;
     code_txt_x <= txt XOR array_of_key(index * 8 + 7 downto index * 8);
     
     process(clk)
@@ -59,10 +50,10 @@ begin
             
             decode_txt <= code_txt_x XOR array_of_key(index * 8 + 7 downto index * 8);
             
-            if index < 299 then -- Počet osmi bitových bloků v 2400bitovém registru
+            if index < 300 then 
                 index <= index + 1;
             else
-                index <= 0; -- Po dosažení konce registru resetujeme index
+                index <= 0;
             end if;
         end if;
     end process;
