@@ -14,7 +14,6 @@ architecture tb of tb_random_generator is
     port (clk                : in std_logic;
         reset              : in std_logic;
         txt                : in std_logic_vector (7 downto 0);
-        data_out           : out std_logic_vector (7 downto 0);
         code_txt           : out std_logic_vector (7 downto 0);
         decode_txt         : out std_logic_vector (7 downto 0);
         array_of_key_debug : out std_logic_vector (7 downto 0));
@@ -23,7 +22,6 @@ end component;
 signal clk                : std_logic;
 signal reset              : std_logic;
 signal txt                : std_logic_vector (7 downto 0);
-signal data_out           : std_logic_vector (7 downto 0);
 signal code_txt           : std_logic_vector (7 downto 0);
 signal decode_txt         : std_logic_vector (7 downto 0);
 signal array_of_key_debug : std_logic_vector (7 downto 0);
@@ -38,7 +36,6 @@ begin
     port map (clk                => clk,
         reset              => reset,
         txt                => txt,
-        data_out           => data_out,
         code_txt           => code_txt,
         decode_txt         => decode_txt,
         array_of_key_debug => array_of_key_debug);
