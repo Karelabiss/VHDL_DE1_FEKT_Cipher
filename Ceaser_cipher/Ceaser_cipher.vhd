@@ -4,9 +4,13 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity BinaryAdder is
     port (
-        clk : in std_logic;                             -- Hodinový signál
-        input, shift : in  std_logic_vector(7 downto 0);        -- Vstupní hodnoty a a b
-        code_input, decode_input : out std_logic_vector(7 downto 0)    -- Výstupní součty
+        clk             : in std_logic;
+        input           : in  std_logic_vector(7 downto 0);
+        shift           : in  std_logic_vector(7 downto 0);
+        coded_txt_input : in STD_LOGIC_VECTOR(7 downto 0);
+        SW              : in STD_LOGIC_VECTOR(1 downto 0);
+        decode_input    : out std_logic_vector(7 downto 0);
+        code_input      : out std_logic_vector(7 downto 0)
     );
 end entity BinaryAdder;
 
@@ -14,20 +18,33 @@ architecture Behavioral of BinaryAdder is
     
     
 begin
-    process (clk)
+    code :process (clk)
     variable temp_sum : unsigned(7 downto 0);
-    variable temp_substract : UNSIGNED(7 downto 0);
-    
     begin
         if rising_edge(clk) then
-            -- Sčítání
-            temp_sum := unsigned(input) + unsigned(shift);
-            code_input <= std_logic_vector(temp_sum);
             
-            -- Odečítání
-            temp_substract := temp_sum - unsigned(shift);
-            decode_input <= std_logic_vector(temp_substract);
-            
+            if(SW(0)='1' and SW(1)='0') then
+                temp_sum := unsigned(input) + unsigned(shift);
+                code_input <= std_logic_vector(temp_sum);
+            end if;
         end if;
-    end process;
+    end process code;
+    
+    decode : process (clk)
+    variable temp_substract : UNSIGNED(7 downto 0);
+    begin
+        if rising_edge(clk) then
+            if(SW(0)='0' and SW(1)='1') then
+                temp_substract := unsigned(coded_txt_input) - unsigned(shift);
+                decode_input <= std_logic_vector(temp_substract);
+            end if;
+        end if;
+    end process decode;
+    
+    
 end architecture Behavioral;
+
+
+
+
+
