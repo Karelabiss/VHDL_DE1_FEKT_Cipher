@@ -1,72 +1,45 @@
 library IEEE;
-use IEEE.std_logic_1164.all;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
-entity random_generator is
-    Port (
-        clk :        in STD_LOGIC;
-        reset :      in STD_LOGIC := '0'; -- Reset nula
-        txt :        in STD_LOGIC_VECTOR(7 downto 0);
-        code_txt :   out STD_LOGIC_VECTOR(7 downto 0);
-        decode_txt : out STD_LOGIC_VECTOR(7 downto 0);
-        array_of_key_debug : out STD_LOGIC_VECTOR(7 downto 0)
+entity Vernam_cipher is
+    port (
+        clk             : in std_logic;
+        input           : in  std_logic_vector(7 downto 0);
+        shift           : in  std_logic_vector(7 downto 0);
+        coded_txt_input : in STD_LOGIC_VECTOR(7 downto 0);
+        SW              : in STD_LOGIC;
+        decode_output    : out std_logic_vector(7 downto 0);
+        code_output      : out std_logic_vector(7 downto 0)
     );
-end random_generator;
+end entity Vernam_cipher;
 
-architecture Behavioral of random_generator is
+architecture Behavioral of Vernam_cipher is
     
-    signal key : STD_LOGIC_VECTOR(7 downto 0);
-    signal array_of_key : STD_LOGIC_VECTOR(2400 downto 0);
-    signal code_txt_x : STD_LOGIC_VECTOR(7 downto 0);
-    signal index: integer :=0;
     
 begin
-    random_number: process(clk)
-    begin
-        if reset = '1' then
-            key <= (others => '1');
-        elsif rising_edge(clk) then
-                -- Generování posloupnosti pomocí LFSR, musíme udělat random seed na tlačítko, aby to fungovalo náhodně
-            key(0) <= key(7) xor key(5) xor key(4) xor key(3);
-            key(1) <= key(0);
-            key(2) <= key(1);
-            key(3) <= key(2);
-            key(4) <= key(3);
-            key(5) <= key(4);
-            key(6) <= key(5);
-            key(7) <= key(6);
-        end if;
-    end process random_number;
-    
-    array_of_key(index * 8 + 7 downto index * 8) <= key;
-    
-    code_txt_x <= txt XOR array_of_key(index * 8 + 7 downto index * 8);
-    
-    process(clk)
+    code :process (clk)
+    variable temp_sum : unsigned(7 downto 0);
     begin
         if rising_edge(clk) then
-            array_of_key_debug <=array_of_key(index * 8 + 7 downto index * 8);
             
-            code_txt <= txt XOR array_of_key(index * 8 + 7 downto index * 8);
-            
-            decode_txt <= code_txt_x XOR array_of_key(index * 8 + 7 downto index * 8);
-            
-            if index < 300 then 
-                index <= index + 1;
-            else
-                index <= 0;
+            if(SW='0') then
+                temp_sum := unsigned(input) XOR unsigned(shift);
+                code_output <= std_logic_vector(temp_sum);
             end if;
         end if;
-    end process;
+    end process code;
+    
+    decode : process (clk)
+    variable temp_substract : UNSIGNED(7 downto 0);
+    begin
+        if rising_edge(clk) then
+            if(SW='1') then
+                temp_substract := unsigned(coded_txt_input) XOR unsigned(shift);
+                decode_output <= std_logic_vector(temp_substract);
+            end if;
+        end if;
+    end process decode;
     
     
-    
-    
-    
-end Behavioral;
-
-
-
-
-
-
-
+end architecture Behavioral;
