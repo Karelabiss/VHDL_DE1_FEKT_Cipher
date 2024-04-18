@@ -35,11 +35,6 @@ entity top is
         BTNC      : in    std_logic;                      --! Synchronous reset
         BTNR      : in    STD_LOGIC;
         SWL       : in    std_logic_vector (4 downto 0);
-        Code_vernam : out STD_LOGIC_VECTOR(7 downto 0);
-        Decode_vernam : out STD_LOGIC_VECTOR(7 downto 0);
-        Code_ceaser : out STD_LOGIC_VECTOR(7 downto 0);
-        Decode_ceaser : out STD_LOGIC_VECTOR(7 downto 0);
-        random_seed : out STD_LOGIC_VECTOR(7 downto 0);
         TX        : out   STD_LOGIC
     );
 end entity top;
@@ -106,6 +101,32 @@ architecture behavioral of top is
         );
     end component;
 
+    --component binary adder for the ceaser
+    component BinaryAdder is
+    port (
+        clk             : in std_logic;
+        input           : in  std_logic_vector(7 downto 0);
+        shift           : in  std_logic_vector(7 downto 0);
+        coded_txt_input : in STD_LOGIC_VECTOR(7 downto 0);
+        SW              : in STD_LOGIC;
+        decode_output    : out std_logic_vector(7 downto 0);
+        code_output      : out std_logic_vector(7 downto 0)
+        );
+    end component;
+    
+    --component Vernam_cipher--
+    component Vernam_cipher is
+    port (
+        clk             : in std_logic;
+        input           : in  std_logic_vector(7 downto 0);
+        shift           : in  std_logic_vector(7 downto 0);
+        coded_txt_input : in STD_LOGIC_VECTOR(7 downto 0);
+        SW              : in STD_LOGIC;
+        decode_output    : out std_logic_vector(7 downto 0);
+        code_output      : out std_logic_vector(7 downto 0)
+    );
+end component Vernam_cipher;
+
     -- Local signals
     --! Clock enable signal for debouncer
     signal sig_en_2ms : std_logic;
@@ -115,6 +136,17 @@ architecture behavioral of top is
     --data_out
     signal output_data : std_logic_vector (7 downto 0);
     
+    signal output_data_serialTx : std_logic_vector (7 downto 0);
+    
+    signal Code_vernam :  STD_LOGIC_VECTOR(7 downto 0);
+    signal Decode_vernam :  STD_LOGIC_VECTOR(7 downto 0);
+    signal Code_ceaser :  STD_LOGIC_VECTOR(7 downto 0);
+    signal Decode_ceaser :  STD_LOGIC_VECTOR(7 downto 0);
+    signal random_seed :  STD_LOGIC_VECTOR(7 downto 0);
+    signal ceaser_output_code : std_logic_vector (7 downto 0);
+    signal ceaser_output_decode : std_logic_vector (7 downto 0);
+    signal vernam_output_code : std_logic_vector (7 downto 0);
+    signal vernam_output_decode : std_logic_vector (7 downto 0);
     
     
 
@@ -147,13 +179,34 @@ begin
         port map (
             clk     => CLK100MHZ,
             rst     => BTNC,
-            data    => output_data,
+            data    => output_data_serialTx,
             trigger => sig_event,
             tx      => TX
         );
 
-
-
+            -- Component Ceaser cipher 
+    
+         ceaser: component BinaryAdder
+        port map(
+            clk             => CLK100MHZ,
+            input           => Code_ceaser,
+            shift           => random_seed,
+            coded_txt_input => Decode_ceaser,
+            SW              => SWL(0),
+            decode_output    => ceaser_output_decode,
+            code_output      => ceaser_output_code
+        );
+            --component vernam
+         Vernam: component Vernam_cipher
+        port map(
+            clk             => CLK100MHZ,
+            input           => Code_vernam,
+            shift           => random_seed,
+            coded_txt_input => Decode_vernam,
+            SW              => SWL(0),
+            decode_output    => vernam_output_decode,
+            code_output      => vernam_output_code
+        );
 
     --------------------------------------------------------
     -- Instance (copy) of driver_7seg_4digits entity
@@ -213,25 +266,30 @@ begin
                 
                 when "00001" =>
                     Code_ceaser <= output_data;
+                    output_data_serialTx <= ceaser_output_code;
                     
-                when "0010" =>
+                when "00010" =>
                     Code_vernam <= output_data;
-                    
-                when "1001" =>
+                    output_data_serialTx <= vernam_output_code;
+                when "10001" =>
                     Decode_ceaser <= output_data;
+                    output_data_serialTx <= ceaser_output_decode;
                     
-                when "1010" =>
-                    Decode_vernam <= output_data;
-                    
-                when "0100" =>
+                when "01000" =>
                     random_seed <= output_data;
-                 
+                    
+                when "10010" =>
+                    Decode_vernam <= output_data;
+                    output_data_serialTx <= vernam_output_decode;
+                    
+                when others =>
+                    output_data_serialTx <= "00000000";
                         
             end case;
         end if;
 end process code_decode;        
         
-        
+
         
     --------------------------------------------------------
     -- Other settings
