@@ -2,7 +2,7 @@
 
 ## Table of Contents
 - [Introduction](#introduction)
-- [Team members](#team-members)
+- [Developer team](#Developer-team)
 - [Theoretical Description and Explanation](#theoretical-description-and-explanation)
 - [Hardware Description of Demo Application](#hardware-description-of-demo-application)
 - [Software Description](#software-description)
@@ -14,7 +14,7 @@
 The objective of this project is to showcase elementary ciphers like the Vernam Cipher and Caesar Cipher by employing fundamental logic gates and flip-flops on the Nexys A7 FPGA board. Through this setup, users can input letters in binary code and witness the resulting ciphertext generated during the encryption process for each cipher.
 
 
-## Team members
+## Developer team
 
     Roman Štofa: programming, prezentation
     Adam Hodor: programming, debugging
