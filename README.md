@@ -51,28 +51,25 @@ Nexys A7 50-T and its components
 
 This diagram depicts the utilized components and the significant data exchanges among them. The components are instantiated at the [top_level](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/Project_final/top_level.vhd).
 
-### Component: Caesar Siphre <sup>[source](), [testbench]() </sup>
+### Component: Caesar Ciphre <sup>[source](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/Project_final/Ceaser_cipher.vhd), [testbench](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/Ceaser_cipher/Ceaser_cipher_tb.vhd) </sup>
 
 <img src="https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/img/Ceaser_tb_image.png"/>
 
 The `input` is given as "ahoj" (65 - a, 72 - h, 79 - o, 74 - j), the `shift` is set to 2, so when encoding, 2 is added to each letter and output as `code_output` (encoded message). Subsequently, `code_output` is transformed into `coded_text_input`, and the `shift` is subtracted from its values to produce `decode_output`, which is essentially the decoded output.
 
-### Component: hex-binary converter and splitter <sup>[source](), [testbench]() </sup>
+### Component: Vernam Ciphre <sup>[source](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/Project_final/Vernam_cipher.vhd), [testbench](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/Vernam_cipher/Vernam_cipher_tb.vhd) </sup>
 
-This component converts hexadecimal numbers supplied by the previous component to a binary number. Afterwards, the binary number is split into signals of
-`hundreds`, `tens` and `ones`, which can be easily displayed as numbers on 7-segment displays.
 
-<img src="">
 
-Simulation example with input numbers 51, 30, 124, 2901. The algorithm splits them into four signals,
-each standing for one digit, e.g. 2901 → 2;9;0;1. Note that our sensor supports at most 400 cm, making
-the signal for thousands redundant.
+<img src="https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/img/Vernam_tb_image/">
 
-### Component: 7-segment diplay driver <sup>[source](), [testbench]()</sup>
 
-<img src="">
 
-This component acts as a driver for the displays: it maps binary numbers to individual segments. The component has several inputs, including `hundreds`, `tens` and `ones`.
+### Component: 7-segment diplay driver <sup>[source](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/Project_final/driver_7seg_4digits.vhd), [testbench](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/display_freeza_funkcni/tb_driver_7seg_4digits.vhd)</sup>
+
+<img src="https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/img/7seg_8digits_display.png"/>
+
+This component acts as a driver for the displays: it maps binary numbers to individual segments. sig_clk_100MHz is set to 2 ms. The component has several inputs, including `sig_data7` - `sig_data0` and outputs `sig_dig7` - `sig_dig0` responsible for the position on the 7-segment display. `sig_seg6` - `sig_seg0`  are used to illuminate individual segments. 
 It uses a counter to cycle through these vector signals to select which one to display on each 7-segment display.
 
 ## Instructions
@@ -89,13 +86,15 @@ Connecting the board to the computer using the 6Pin USB TTL UART converter.
 ## Tools and References
 [Vivado Design Suite](https://www.xilinx.com/products/design-tools/vivado.html)
 
+[VHDPlus](https://vhdplus.com/)
+
 [Nexys A7 reference manual](https://digilent.com/reference/programmable-logic/nexys-a7/reference-manual)
 
-[XESS VHDL_lib](https://github.com/xesscorp/VHDL_Lib)
+[GTKWave](https://gtkwave.sourceforge.net/)
 
 [VHDL testbench generator](https://vhdl.lapinoo.net/testbench/)
 
-[Inkscape](https://inkscape.org/)
+[Draw.io](https://www.drawio.com/)
 
 
 Digital Electronics Lectures presentation by Tomas Fryza
