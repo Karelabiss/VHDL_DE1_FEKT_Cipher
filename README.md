@@ -45,7 +45,7 @@ Nexys A7 50-T schematic
 
 ## Software description
 
-<img src=""/>
+<img src="https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/img/diagramik.drawio.png"/>
 
 This diagram depicts the utilized components and the significant data exchanges among them. The components are instantiated at the [top_level](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/Project_final/top_level.vhd).
 
