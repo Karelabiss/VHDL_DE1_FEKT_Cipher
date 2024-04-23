@@ -1,5 +1,0 @@
-        Code_vernam : out STD_LOGIC_VECTOR(7 downto 0);
-        Decode_vernam : out STD_LOGIC_VECTOR(7 downto 0);
-        Code_ceaser : out STD_LOGIC_VECTOR(7 downto 0);
-        Decode_ceaser : out STD_LOGIC_VECTOR(7 downto 0);
-        random_seed : out STD_LOGIC_VECTOR(7 downto 0)
