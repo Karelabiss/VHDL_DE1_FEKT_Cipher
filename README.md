@@ -49,13 +49,13 @@ Nexys A7 50-T schematic
 
 This diagram depicts the utilized components and the significant data exchanges among them. The components are instantiated at the [top_level](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/Project_final/top_level.vhd).
 
-### Component: Caesar Ciphre <sup>[source](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/Project_final/Ceaser_cipher.vhd), [testbench](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/Ceaser_cipher/Ceaser_cipher_tb.vhd) </sup>
+### Component: Caesar Cipher <sup>[source](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/Project_final/Ceaser_cipher.vhd), [testbench](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/Ceaser_cipher/Ceaser_cipher_tb.vhd) </sup>
 
 <img src="https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/img/Ceaser_tb_image.png"/>
 
 The `input` is given as "ahoj" (65 - a, 72 - h, 79 - o, 74 - j), the `shift` is set to 2, so when encoding, 2 is added to each letter and output as `code_output` (encoded message). Subsequently, `code_output` is transformed into `coded_text_input`, and the `shift` is subtracted from its values to produce `decode_output`, which is essentially the decoded output.
 
-### Component: Vernam Ciphre <sup>[source](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/Project_final/Vernam_cipher.vhd), [testbench](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/Vernam_cipher/Vernam_cipher_tb.vhd) </sup>
+### Component: Vernam Cipher <sup>[source](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/Project_final/Vernam_cipher.vhd), [testbench](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/Vernam_cipher/Vernam_cipher_tb.vhd) </sup>
 
 
 
@@ -63,7 +63,7 @@ The `input` is given as "ahoj" (65 - a, 72 - h, 79 - o, 74 - j), the `shift` is 
 
 The `input` is given as "ahoj", the `shift` generates random seed (in this case 00000011), so when encoding, `input` values are XOR-ed with `shift` value creating `code_output` (encoded message). `code_output` is transformed into `coded_text_input`, and the `shift` is again using mathematical function XOR to create `decode_output`, which is essentially the decoded output.
 
-### Component: 7-segment diplay driver <sup>[source](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/Project_final/driver_7seg_4digits.vhd), [testbench](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/display_freeza_funkcni/tb_driver_7seg_4digits.vhd)</sup>
+### Component: 7-segment display driver <sup>[source](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/Project_final/driver_7seg_4digits.vhd), [testbench](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/display_freeza_funkcni/tb_driver_7seg_4digits.vhd)</sup>
 
 <img src="https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/img/7seg_8digits_display.png"/>
 
