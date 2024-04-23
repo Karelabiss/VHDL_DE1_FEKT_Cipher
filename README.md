@@ -79,7 +79,7 @@ Connecting the board to the computer using the 6Pin USB TTL UART converter.
 
 ## Video
 
-[link to a short video]()
+[Videosák]()
 
 ## Tools and References
 [Vivado Design Suite](https://www.xilinx.com/products/design-tools/vivado.html)
