@@ -55,11 +55,11 @@ This diagram depicts the utilized components and the significant data exchanges 
 
 The `input` is given as "ahoj" (65 - a, 72 - h, 79 - o, 74 - j), the `shift` is set to 2, so when encoding, 2 is added to each letter and output as `code_output` (encoded message). Subsequently, `code_output` is transformed into `coded_text_input`, and the `shift` is subtracted from its values to produce `decode_output`, which is essentially the decoded output.
 
-### Component: Atbash Cipher <sup>[source](), [testbench]() </sup>
+### Component: Atbash Cipher <sup>[source](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/Atbash_cipher/atbash_cipher.vhd), [testbench](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/Atbash_cipher/atbash_cipher_tb.vhd) </sup>
 
 <img src="https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/img/Atbash_tb_image.png/">
 
-Transforms A to Z etc.
+Transforms A to Z, B to Y etc.
 
 
 ### Component: Vernam Cipher <sup>[source](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/Project_final/Vernam_cipher.vhd), [testbench](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/Vernam_cipher/Vernam_cipher_tb.vhd) </sup>
