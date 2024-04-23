@@ -33,7 +33,7 @@ Nexys A7 50-T and its components
 <img src="https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/img/nexys-a7-callout.png" width="390px"/>
 <img src="https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/img/components.PNG" width="450px"/>
 
-7-segment display schematic
+Nexys A7 50-T schematic
 
 <img src="https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/img/n4r.png" height="480px"/>
 
