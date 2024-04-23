@@ -57,7 +57,7 @@ The `input` is given as "ahoj" (65 - a, 72 - h, 79 - o, 74 - j), the `shift` is 
 
 ### Component: Atbash Cipher <sup>[source](), [testbench]() </sup>
 
-<img src="https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/img/Vernam_tb_image/">
+<img src="https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/img/Atbash_tb_image.png/">
 
 Transforms A to Z etc.
 
