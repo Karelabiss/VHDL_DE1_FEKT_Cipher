@@ -51,39 +51,40 @@ Nexys A7 50-T and its components
 
 This diagram illustrates the components used and the important data flows between them. The components are instantiated in the [top_level](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/Project_final/top_level.vhd).
 
-<img src="https://github.com/VUT246843/VHDLprojekt/blob/main/Demos/Tb_main.png"/>
+### Component: Caesar Siphre <sup>[source](), [testbench]() </sup>
 
-FSM testbench simulation for artificial pulse lengths of 300, 400 and 100 ns which return distances of 3, 4 and 1 cm. Note that the pulse widths are not real and were artificially simulated.
+<img src="https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/img/Ceaser_tb_image.png"/>
 
-### Component: hex-binary converter and splitter <sup>[source](https://github.com/VUT246843/VHDLprojekt/blob/main/Parking_system/bin2bcd.vhd), [testbench](https://github.com/VUT246843/VHDLprojekt/blob/main/Parking_system/Testbenches/tb_bin2bcd.vhd) </sup>
+The `input` is given as "ahoj" (65 - a, 72 - h, 79 - o, 74 - j), the `shift` is set to 2, so when encoding, 2 is added to each letter and output as `code_output` (encoded message). Subsequently, `code_output` is transformed into `coded_text_input`, and the `shift` is subtracted from its values to produce `decode_output`, which is essentially the decoded output.
+
+### Component: hex-binary converter and splitter <sup>[source](), [testbench]() </sup>
 
 This component converts hexadecimal numbers supplied by the previous component to a binary number. Afterwards, the binary number is split into signals of
 `hundreds`, `tens` and `ones`, which can be easily displayed as numbers on 7-segment displays.
 
-<img src="https://github.com/VUT246843/VHDLprojekt/blob/main/Demos/Tb_bin2bcd.png">
+<img src="">
 
 Simulation example with input numbers 51, 30, 124, 2901. The algorithm splits them into four signals,
 each standing for one digit, e.g. 2901 → 2;9;0;1. Note that our sensor supports at most 400 cm, making
 the signal for thousands redundant.
 
-### Component: 7-segment diplay driver <sup>[source](https://github.com/VUT246843/VHDLprojekt/blob/main/Parking_system/visu7seg.vhd), [testbench](https://github.com/VUT246843/VHDLprojekt/blob/main/Parking_system/Testbenches/tb_visu7seg.vhd)</sup>
+### Component: 7-segment diplay driver <sup>[source](), [testbench]()</sup>
 
-<img src="https://github.com/VUT246843/VHDLprojekt/blob/main/Demos/Tb_visu7seg.png">
+<img src="">
 
 This component acts as a driver for the displays: it maps binary numbers to individual segments. The component has several inputs, including `hundreds`, `tens` and `ones`.
 It uses a counter to cycle through these vector signals to select which one to display on each 7-segment display.
 
 ## Instructions
 
+Connecting the board to the computer using the 6Pin USB TTL UART converter.
+
 ![vlastní zapojení](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/img/zapojenie%20dosky.png)
 
-Practical circuit wiring with arduino and the sensor
-
-![rn_image_picker_lib_temp_6f0b5934-7825-4fa5-a5bc-865a4583f82e](https://github.com/VUT246843/VHDLprojekt/assets/165208595/f7b76f36-5ca7-467b-818c-99172666a027)
 
 ## Video
 
-[link to a short video](https://www.youtube.com/watch?v=_j5DjAFLo7g)
+[link to a short video]()
 
 ## Tools and References
 [Vivado Design Suite](https://www.xilinx.com/products/design-tools/vivado.html)
