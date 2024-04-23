@@ -72,9 +72,33 @@ It uses a counter to cycle through these vector signals to select which one to d
 
 ## Instructions
 
+<img src="https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/img/port_description.png" width="450" height="400"/>
+
+BTNC - reset
+
+BTNR - sends data from the board to the computer via a 6-pin USB TTL UART converter
+
+BTND - stores data from the display as input into the component
+
+SWL0 - encoding
+
+SWL1 - decoding
+
+SWL2 - *comming soon*
+
+SWL3 - Vernam
+
+SWL4 - Caesar
+
+SW[0:7] - setts 0 or 1 on individual digits
+
+#### Ja-Pins:
 Connecting the board to the computer using the 6Pin USB TTL UART converter.
 
 ![vlastní zapojení](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/img/zapojenie%20dosky.png)
+
+
+
 
 
 ## Video
