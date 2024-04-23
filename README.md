@@ -90,7 +90,7 @@ SWL3 - Vernam
 
 SWL4 - Caesar
 
-SW[0:7] - setts 0 or 1 on individual digits
+SW[0:7] - sets 0 or 1 on individual digits
 
 Ja-Pins(1) - serves to connect the board and the computer using the 6Pin USB TTL UART converter
 
