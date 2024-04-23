@@ -92,8 +92,7 @@ SWL4 - Caesar
 
 SW[0:7] - setts 0 or 1 on individual digits
 
-#### Ja-Pins:
-Connecting the board to the computer using the 6Pin USB TTL UART converter.
+Ja-Pins(1) - serves to connect the board and the computer using the 6Pin USB TTL UART converter
 
 ![vlastní zapojení](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/img/zapojenie%20dosky.png)
 
