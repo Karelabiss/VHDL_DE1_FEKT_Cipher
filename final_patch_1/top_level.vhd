@@ -128,6 +128,21 @@ architecture behavioral of top is
     );
 end component Vernam_cipher;
 
+component atbash_cipher is
+    port (
+        clk             : in std_logic;
+        input           : in  std_logic_vector(7 downto 0);
+        coded_txt_input : in STD_LOGIC_VECTOR(7 downto 0);
+        SW              : in STD_LOGIC;
+        decode_output    : out std_logic_vector(7 downto 0);
+        code_output      : out std_logic_vector(7 downto 0)
+    );
+end component atbash_cipher;
+
+
+
+    
+
     -- Local signals
     --! Clock enable signal for debouncer
     signal sig_en_2ms : std_logic;
@@ -148,6 +163,12 @@ end component Vernam_cipher;
     signal ceaser_output_decode : std_logic_vector (7 downto 0);
     signal vernam_output_code : std_logic_vector (7 downto 0);
     signal vernam_output_decode : std_logic_vector (7 downto 0);
+
+    signal Code_atbash :  STD_LOGIC_VECTOR(7 downto 0);
+    signal Decode_atbash :  STD_LOGIC_VECTOR(7 downto 0);
+    signal atbash_output_code : std_logic_vector (7 downto 0);
+    signal atbash_output_decode : std_logic_vector (7 downto 0);
+
     
     
 
@@ -209,6 +230,18 @@ begin
             code_output      => vernam_output_code
         );
 
+          Atbash: component atbash_cipher 
+        port map(
+            clk             => CLK100MHZ,
+            input           => Code_atbash,
+            coded_txt_input => Decode_atbash,
+            SW              => SWL(0),
+            decode_output    => atbash_output_decode,
+            code_output      => atbash_output_code
+        );
+    end entity atbash_cipher;
+
+        
     --------------------------------------------------------
     -- Instance (copy) of driver_7seg_4digits entity
     --------------------------------------------------------
@@ -236,9 +269,7 @@ begin
 
             -- DECIMAL POINT
             dp      => DP,
-
             seg(6) => CA,
-            -- MAP OTHER DISPLAY SEGMENTS HERE
             seg(5) => CB,
             seg(4) => CC,
             seg(3) => CD,
@@ -276,22 +307,36 @@ begin
                         Code_vernam <= output_data;
                     end if;
                     output_data_serialTx <= vernam_output_code;
+
+                when "00100" =>
+                    if(BTND = '1') then
+                        Code_atbash <= output_data;
+                    end if;
+                    output_data_serialTx <= atbash_output_code;
+                
                 when "10001" =>
                     if(BTND = '1') then
                         Decode_ceaser <= output_data;
                     end if;
                     output_data_serialTx <= ceaser_output_decode;
                     
-                when "01000" =>
-                    if(BTND = '1') then
-                        random_seed <= output_data;
-                    end if;
                 when "10010" =>
                     if(BTND = '1') then
                         Decode_vernam <= output_data;
                     end if;
                     output_data_serialTx <= vernam_output_decode;
-                    
+
+                when "10100" =>
+                    if(BTND = '1') then
+                        Decode_atbash <= output_data;
+                    end if;
+                    output_data_serialTx <= atbash_output_decode;
+                            
+                when "01000" =>
+                    if(BTND = '1') then
+                        random_seed <= output_data;
+                    end if;
+                        
                 when others =>
                     output_data_serialTx <= "00000000";
                         
