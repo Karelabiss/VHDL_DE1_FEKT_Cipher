@@ -16,7 +16,7 @@ The objective of this project is to showcase elementary ciphers like the Vernam 
 
 ## Developer team
 
-    Roman Štofa: tried programming but failed :(, prezentation
+    Roman Štofa: tried programming but failed :(, prezentation, repository
     Adam Hodor: programming, testing, top_level diagram
     Dominik Rechtorík: programming, documentation
     Dominik Šrenk: programming, repository, testbenches
