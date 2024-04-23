@@ -86,9 +86,9 @@ SWL1 - decoding
 
 SWL2 - *coming soon*
 
-SWL3 - Vernam
+SWL3 - Vernam cipher
 
-SWL4 - Caesar
+SWL4 - Caesar cipher
 
 SW[0:7] - sets 0 or 1 on individual digits
 
