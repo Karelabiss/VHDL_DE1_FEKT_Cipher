@@ -239,7 +239,6 @@ begin
             decode_output    => atbash_output_decode,
             code_output      => atbash_output_code
         );
-    end entity atbash_cipher;
 
         
     --------------------------------------------------------
