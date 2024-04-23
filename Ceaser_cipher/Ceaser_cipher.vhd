@@ -8,9 +8,9 @@ entity BinaryAdder is
         input           : in  std_logic_vector(7 downto 0);
         shift           : in  std_logic_vector(7 downto 0);
         coded_txt_input : in STD_LOGIC_VECTOR(7 downto 0);
-        SW              : in STD_LOGIC_VECTOR(1 downto 0);
-        decode_input    : out std_logic_vector(7 downto 0);
-        code_input      : out std_logic_vector(7 downto 0)
+        SW              : in STD_LOGIC;
+        decode_output    : out std_logic_vector(7 downto 0);
+        code_output      : out std_logic_vector(7 downto 0)
     );
 end entity BinaryAdder;
 
@@ -23,9 +23,9 @@ begin
     begin
         if rising_edge(clk) then
             
-            if(SW(0)='1' and SW(1)='0') then
+            if(SW='0') then
                 temp_sum := unsigned(input) + unsigned(shift);
-                code_input <= std_logic_vector(temp_sum);
+                code_output <= std_logic_vector(temp_sum);
             end if;
         end if;
     end process code;
@@ -34,17 +34,12 @@ begin
     variable temp_substract : UNSIGNED(7 downto 0);
     begin
         if rising_edge(clk) then
-            if(SW(0)='0' and SW(1)='1') then
+            if(SW='1') then
                 temp_substract := unsigned(coded_txt_input) - unsigned(shift);
-                decode_input <= std_logic_vector(temp_substract);
+                decode_output <= std_logic_vector(temp_substract);
             end if;
         end if;
     end process decode;
     
     
 end architecture Behavioral;
-
-
-
-
-
