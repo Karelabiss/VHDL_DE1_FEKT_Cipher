@@ -61,7 +61,7 @@ The `input` is given as "ahoj" (65 - a, 72 - h, 79 - o, 74 - j), the `shift` is 
 
 <img src="https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/img/Vernam_tb_image/">
 
-The `input` is given as "ahoj", the `shift` generates random seed (in this case 00000011), so when encoding, input values are XOR-ed creating `code_output` (encoded message). `code_output` is transformed into `coded_text_input`, and the `shift` is again using mathematical function XOR to create `decode_output`, which is essentially the decoded output.
+The `input` is given as "ahoj", the `shift` generates random seed (in this case 00000011), so when encoding, `input` values are XOR-ed with `shift` value creating `code_output` (encoded message). `code_output` is transformed into `coded_text_input`, and the `shift` is again using mathematical function XOR to create `decode_output`, which is essentially the decoded output.
 
 ### Component: 7-segment diplay driver <sup>[source](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/Project_final/driver_7seg_4digits.vhd), [testbench](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/display_freeza_funkcni/tb_driver_7seg_4digits.vhd)</sup>
 
