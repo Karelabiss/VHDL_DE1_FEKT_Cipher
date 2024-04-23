@@ -2,7 +2,7 @@
 
 ## Table of Contents
 - [Introduction](#introduction)
-- [Team members](#team)
+- [Team members](#team-members)
 - [Theoretical Description and Explanation](#theoretical-description-and-explanation)
 - [Hardware Description of Demo Application](#hardware-description-of-demo-application)
 - [Software Description](#software-description)
@@ -28,23 +28,20 @@ This project aims to demonstrate various simple ciphers, such as the Vernam Ciph
 
 ## Hardware description of demo application
 
-<img src="https://github.com/VUT246843/VHDLprojekt/assets/165208595/ff8f4049-588c-4923-8c18-9f2f7cddb844" width="390px"/>
-<img src="https://github.com/VUT246843/VHDLprojekt/assets/165208595/f14947a6-a02f-44b1-8cf6-f4306d6abfd6" width="420px"/>
+Nexys A7 50-T and its components
 
-Nexys A7 50-T board and its hardware components
+<img src="https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/img/nexys-a7-callout.png" width="390px"/>
+<img src="https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/img/components.PNG" width="450px"/>
 
-<img src="https://github.com/VUT246843/VHDLprojekt/assets/165208595/83f1c10e-2d14-403f-b75d-5f48001c31d8" height="480px"/>
+7-segment display schematic
 
-Nexys A7 50-T schematic 
+<img src="https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/img/n4r.png" height="480px"/>
 
-<img src="https://github.com/VUT246843/VHDLprojekt/assets/165208595/d6bc9a6a-7eee-47c5-b7d7-34a22d4c3e74" width="280"/>
-<img src="https://github.com/VUT246843/VHDLprojekt/assets/165208595/533ec0b2-04be-4bcd-b6fd-376e77d05412" width="400px"/>
+6Pin USB TTL UART converter, CP2102, DTR pin for Nexys A7 50-T board
 
-Ultrasonic sensor HC-SR04 and its function
+<img src="https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/img/1158.png"/>
 
-<img src="https://github.com/VUT246843/VHDLprojekt/assets/165208595/8c3a8a87-8144-4ad8-9705-3614074da50f" width="380px"/>
 
-Arduino Uno used as an external power supply for USS 
 
 ## Software description
 
