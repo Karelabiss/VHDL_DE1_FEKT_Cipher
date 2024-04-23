@@ -103,7 +103,9 @@ Ja-Pins(1) - serves to connect the board and the computer using the 6Pin USB TTL
 
 ![vlastní zapojení](https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/img/zapojenie%20dosky.png)
 
+Since we're writing letters in binary code, the ASCII table will come in handy :)
 
+<img src="https://github.com/Karelabiss/VHDL_DE1_FEKT_Cipher/blob/main/img/ASCII.png" width="700" height="400"/>
 
 
 
