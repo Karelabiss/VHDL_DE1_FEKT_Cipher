@@ -84,7 +84,7 @@ SWL0 - encoding
 
 SWL1 - decoding
 
-SWL2 - *comming soon*
+SWL2 - *coming soon*
 
 SWL3 - Vernam
 
