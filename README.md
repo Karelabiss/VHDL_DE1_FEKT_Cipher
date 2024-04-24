@@ -126,5 +126,7 @@ Since we're writing letters in binary code, the ASCII table will come in handy.
 
 [Draw.io](https://www.drawio.com/)
 
+[YouTube Video](https://youtu.be/R-h31Xu8xJs?si=o2DK031GZXZFYlqp)
+
 
 Digital Electronics Lectures presentation by Tomas Fryza
