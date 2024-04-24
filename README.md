@@ -111,7 +111,7 @@ Since we're writing letters in binary code, the ASCII table will come in handy.
 
 ## Video
 
-[Videosák]()
+[Videosák](https://youtu.be/R-h31Xu8xJs?si=o2DK031GZXZFYlqp)
 
 ## Tools and References
 [Vivado Design Suite](https://www.xilinx.com/products/design-tools/vivado.html)
@@ -125,8 +125,6 @@ Since we're writing letters in binary code, the ASCII table will come in handy.
 [VHDL testbench generator](https://vhdl.lapinoo.net/testbench/)
 
 [Draw.io](https://www.drawio.com/)
-
-[YouTube Video](https://youtu.be/R-h31Xu8xJs?si=o2DK031GZXZFYlqp)
 
 
 Digital Electronics Lectures presentation by Tomas Fryza
